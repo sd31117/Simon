@@ -1,0 +1,65 @@
+@import 'vars';
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #EFF0F1;
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+    @extend h1;
+}
+
+.firstgrid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.secondgrid {
+    @extend .firstgrid;
+}
+
+.button1 {
+    background-color: $btn1_color;
+    color: white;
+    font-size: 5em;
+    padding: 60px;
+    margin: 5px;
+    &:hover {
+
+    }
+}
+
+.button2 {
+    @extend .button1;
+    background-color: $btn2_color;
+
+    &:hover {
+
+    }
+}
+
+.button3 {
+    @extend .button1;
+    background-color: $btn3_color;
+
+    &:hover {
+
+    }
+}
+
+.button4 {
+    @extend .button1;
+    background-color: $btn4_color;
+
+    &:hover {
+
+    }
+}
