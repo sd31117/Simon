@@ -20,16 +20,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 =======================================================================================
 */
+session_start();
+
+if(!isset($_SESSION['clickOrder'])){
+
+    $_SESSION['clickOrder'] = array();
+}
+
 
 // checks if any buttons are pressed
-if (isset($_POST["button1"])){
+if (isset($_POST['button1'])){
 
+    bClicked('1');
+    $msg = "btn1";
 } elseif (isset($_POST["button2"])){
 
+    bClicked('2');
+    $msg = "btn2";
 } elseif (isset($_POST["button3"])){
 
+    bClicked('3');
+    $msg = "btn3";
 } elseif (isset($_POST["button4"])){
 
+    bClicked('4');
+    $msg = "btn4";
+}
+
+
+
+
+function bClicked($btn_value){
+
+
+
+    array_push($_SESSION['clickOrder'],$btn_value);
+
+
+    
+
+     $clickCount = count($_SESSION['clickOrder']);
+
+     echo "click count: " . $clickCount;
+
+    if (count($_SESSION['clickOrder']) == 5){
+
+        session_unset();
+        session_destroy();
+    }
 }
 
 
@@ -50,17 +88,23 @@ if (isset($_POST["button1"])){
 <h2>Press start to begin.</h2>
 
 <div class="firstgrid">
-    <a href="#" class="button1">1</a>
-    <a href="#" class="button2">2</a>
+    <form action="" method="post">
+        <input type="submit" class="button1" name="button1" value="1">
+        <input type="submit" class="button2" name="button2" value="2">
+
 
 </div><br>
 
 <div class="secondgrid">
 
-    <a href="#" class="button3">3</a>
-    <a href="#" class="button4">4</a>
+
+        <input type="submit" class="button3" name="button3" value="3">
+        <input type="submit" class="button4" name="button4" value="4">
+    </form>
 
 </div>
+
+<h2><?php echo $msg; ?></h2>
 
 </body>
 </html>
