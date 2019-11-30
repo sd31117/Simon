@@ -1,0 +1,35 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #EFF0F1;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.firstgrid, .secondgrid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button1, .button4, .button3, .button2 {
+  background-color: green;
+  color: white;
+  font-size: 5em;
+  padding: 60px;
+  margin: 5px;
+}
+.button2 {
+  background-color: blue;
+}
+.button3 {
+  background-color: yellow;
+}
+.button4 {
+  background-color: red;
+}
+
+/*# sourceMappingURL=styles.css.map */
