@@ -20,55 +20,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 =======================================================================================
 */
-session_start();
-
-if(!isset($_SESSION['clickOrder'])){
-
-    $_SESSION['clickOrder'] = array();
-}
-
-
-// checks if any buttons are pressed
-if (isset($_POST['button1'])){
-
-    bClicked('1');
-    $msg = "btn1";
-} elseif (isset($_POST["button2"])){
-
-    bClicked('2');
-    $msg = "btn2";
-} elseif (isset($_POST["button3"])){
-
-    bClicked('3');
-    $msg = "btn3";
-} elseif (isset($_POST["button4"])){
-
-    bClicked('4');
-    $msg = "btn4";
-}
-
-
-
-
-function bClicked($btn_value){
-
-
-
-    array_push($_SESSION['clickOrder'],$btn_value);
-
-
-    
-
-     $clickCount = count($_SESSION['clickOrder']);
-
-     echo "click count: " . $clickCount;
-
-    if (count($_SESSION['clickOrder']) == 5){
-
-        session_unset();
-        session_destroy();
-    }
-}
+// session_start();
+//
+//
+// if(!isset($_SESSION['clickOrder'])){
+//
+//     $_SESSION['clickOrder'] = array();
+// } elseif (!isset($_SESSION['currentLevel'])) {
+//
+//     $_SESSION['currentLevel'] = 10;
+// }
+//
+//
+// // checks if any buttons are pressed
+// if (isset($_POST['button1'])){
+//
+//     bClicked('1');
+//     $msg = "btn1";
+// } elseif (isset($_POST["button2"])){
+//
+//     bClicked('2');
+//     $msg = "btn2";
+// } elseif (isset($_POST["button3"])){
+//
+//     bClicked('3');
+//     $msg = "btn3";
+// } elseif (isset($_POST["button4"])){
+//
+//     bClicked('4');
+//     $msg = "btn4";
+// }
+//
+//
+//
+// // Used to record order of button presses, storing them in a session array
+// function bClicked($btn_value){
+//
+//     array_push($_SESSION['clickOrder'],$btn_value);
+//
+//      $clickCount = count($_SESSION['clickOrder']);
+//      echo $_SESSION['currentLevel'];
+//      echo "click count: " . $clickCount;
+//
+//     if (count($_SESSION['clickOrder']) == $_SESSION['currentLevel']){
+//
+//         session_unset();
+//         session_destroy();
+//     }
+// }
+//
+// // flashes the button color to the desired pattern
+// $order = $_SESSION['clickOrder'];
+// function flashBTN($order) {
+//
+// }
 
 
 ?>
@@ -84,13 +89,15 @@ function bClicked($btn_value){
 </head>
 <body>
 
-<h1>Simon Game</h1><br>
-<h2>Press start to begin.</h2>
+<h1 id="game_title">Simon Game</h1><br>
+<h2 id="level"></h2>
+<h2 id="instructions">Press start to begin.</h2>
+<h2 id="debug-order"></h2>
 
 <div class="firstgrid">
     <form action="" method="post">
-        <input type="submit" class="button1" name="button1" value="1">
-        <input type="submit" class="button2" name="button2" value="2">
+        <input type="button" id="btn1" class="button1" name="button1" value="1">
+        <input type="button" id="btn2" class="button2" name="button2" value="2">
 
 
 </div><br>
@@ -98,13 +105,23 @@ function bClicked($btn_value){
 <div class="secondgrid">
 
 
-        <input type="submit" class="button3" name="button3" value="3">
-        <input type="submit" class="button4" name="button4" value="4">
-    </form>
+        <input type="button" id="btn3" class="button3" name="button3" value="3">
+        <input type="button" id="btn4" class="button4" name="button4" value="4">
+
 
 </div>
 
-<h2><?php echo $msg; ?></h2>
+<div class="thirdgrid">
+
+        <input type="button" id="start" class="start" name="start" value="Start Game">
+        </form>
+
+</div>
+
+<h2 id="debug"></h2>
+<h2 id="msg"></h2>
+
+<script src="/test/Simon/js/main.js"></script>
 
 </body>
 </html>
